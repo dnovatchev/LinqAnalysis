@@ -1,0 +1,17 @@
+# Visual Studio
+.vs/
+
+# Build output
+bin/
+obj/
+
+# Analyzer-generated results
+Results/
+
+# Experimental/generated environment data
+TestEnv/
+
+# Historical manual backups
+*.broken
+*.singleline-backup
+ProgramOldOld.cs

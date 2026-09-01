@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "LinqCorpusTextAnalyzer": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\LinqCorpus\\serilog C:\\LinqCorpus\\AnalyzerRefactored\\Results\\serilog\\processed-files.txt"
+    }
+  }
+}

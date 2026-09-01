@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "LinqCorpusAnalyzer": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\LinqCorpus\\serilog"
+    }
+  }
+}
