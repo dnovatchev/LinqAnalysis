@@ -1,4 +1,4 @@
-#LinqAnalysis
+# LinqAnalysis
 
 This repository contains the source code, database definitions, SQL queries, and PowerShell scripts used for the empirical study of LINQ usage in C# described in:
 
@@ -6,8 +6,9 @@ This repository contains the source code, database definitions, SQL queries, and
 
 The study analyzes LINQ usage in three open-source C# repositories and compares textual identification of LINQ usage with semantic identification based on the C# compiler's semantic model. It also analyzes LINQ method-chains and the frequencies and continuations of LINQ API-method-call sequences.
 
-##Repository structure
+## Repository structure
 
+```
 LinqAnalysis/
 ├── src/
 │   ├── LinqCorpusAnalyzer/
@@ -44,14 +45,15 @@ LinqAnalysis/
 ├── README.md
 ├── LICENSE
 └── .gitignore
+```
 
-##Analyzers
+## Analyzers
 
-###LinqCorpusAnalyzer
+### LinqCorpusAnalyzer
 
 `src/LinqCorpusAnalyzer` performs semantic analysis of C# source code using Roslyn. It identifies calls to the LINQ APIs and records semantic LINQ API-method-calls, LINQ method-chains, and related project and corpus measurements.
 
-###LinqCorpusTextAnalyzer
+### LinqCorpusTextAnalyzer
 
 `src/LinqCorpusTextAnalyzer` performs textual analysis of C# source files. It identifies occurrences of LINQ method names in source text without relying on semantic binding.
 
@@ -59,19 +61,19 @@ The textual analyzer **must be run after the semantic analyzer**. It uses the li
 
 The two analyzers thus support the study's comparison between textual LINQ candidates and semantically confirmed LINQ API-method-calls.
 
-##Corpus
+## Corpus
 
 The empirical study uses three open-source C# repositories:
 
-- `dotnet\efcore`
-- `dotnet\runtime`
-- `serilog\serilog`
+- `dotnet/efcore`
+- `dotnet/runtime`
+- `serilog/serilog`
 
 The corpus itself is **not included in this repository**. The scripts in `scripts/` document and automate the corpus acquisition and measurement process.
 
 The analyzed repositories and their revisions are recorded by the corpus-measurement process so that the precise source revisions used for the study can be identified.
 
-##Database
+## Database
 
 The SQL Server database used by the analysis is `LinqCorpus`.
 
@@ -79,11 +81,11 @@ The SQL Server database used by the analysis is `LinqCorpus`.
 
 The database contains the measured corpus information and the semantic, textual, and LINQ-chain results produced by the analyzers.
 
-The standalone view-definition scripts in `database\` correspond to views used by the analysis.
+The standalone view-definition scripts in `database/` correspond to views used by the analysis.
 
-##SQL queries
+## SQL queries
 
-The `queries\` directory contains the SQL queries used to obtain and analyze the empirical results.
+The `queries/` directory contains the SQL queries used to obtain and analyze the empirical results.
 
 The queries cover:
 
@@ -96,24 +98,25 @@ The queries cover:
 - frequency-rank analysis and regression;
 - bigram and trigram frequencies and continuations.
 
-`Materialize_OperatorTrigramFrequencies.sql` materializes trigram-frequency results used by subsequent analysis.
+`Materialize_OperatorTrigramFrequencies.sql` saves the results of a long-running trigram-frequency query 
+so that the results are readily available for subsequent analysis without repeatedly executing the long-running query.
 
-##Reproduction workflow
+## Reproduction workflow
 
 The principal workflow is:
 
 1. Acquire the source repositories using GetCorpus.ps1.
 2. Measure the acquired corpus using MeasureCorpus.ps1.
 3. Build and run the semantic analyzer.
-4. Run the textual analyzer.
+4. Run the textual analyzer after the semantic analyzer. It processes exactly the same C# files that were processed by the semantic analyzer.
 5. Populate the SQL Server database with the resulting measurements and analysis data.
 6. Execute the SQL queries in queries/ to reproduce the reported analyses.
 
-The PowerShell scripts in `scripts\` contain the corresponding corpus, analysis, comparison, and database-population operations.
+The PowerShell scripts in `scripts/` contain the corresponding corpus, analysis, comparison, and database-population operations.
 
 The exact commands and paths used during the original analysis are retained in the scripts. In particular, the scripts preserve the original corpus-root convention used by the study.
 
-##Requirements
+## Requirements
 
 The analysis requires, as applicable:
 
@@ -126,7 +129,7 @@ The analysis requires, as applicable:
 
 The semantic analyzer uses the Roslyn APIs provided through its .NET project dependencies.
 
-##Reproducibility
+## Reproducibility
 
 The repository is intended to provide the implementation and database/query material necessary to reproduce the computational part of the study.
 
@@ -134,7 +137,7 @@ The paper reports the corpus revisions, corpus measurements, semantic and textua
 
 The corpus repositories themselves remain separate because of their size and independent version histories.
 
-##Paper
+## Paper
 
 The research paper associated with this repository is:
 
