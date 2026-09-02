@@ -141,6 +141,6 @@ The corpus repositories themselves remain separate because of their size and ind
 
 The research paper associated with this repository is:
 
-**Dimitre Novatchev. “What Is Really Being Used? An Empirical Study of LINQ Usage in C#”**
+**Dimitre Novatchev. [“What Is Really Being Used? An Empirical Study of LINQ Usage in C#”](https://medium.com/@dimitrenovatchev/what-is-really-being-used-97c06cf96704?sk=5b6acfe70c8138b99982c60152ba21c5)**
 
 The paper provides the motivation, methodology, empirical results, and interpretation of the analyses implemented in this repository.
